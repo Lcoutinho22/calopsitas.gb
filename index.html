@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pt-BR" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    
+    <title>Calopsitas GB | Criatório Especializado</title>
+    <meta name="description" content="Excelência na criação de calopsitas em São Paulo - onde o cuidado e a paixão se transformam em qualidade e confiança.">
+    <meta name="theme-color" content="#FFB703">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+
+    <style>
+        /* === Variáveis de Tema (Extraídas da Logo) === */
+        :root {
+            /* Fundo inspirado no preto da logo */
+            --bg-color: #050505; 
+            --bg-secondary: #121212;
+            
+            /* Textos */
+            --text-main: #f5f5f7;
+            --text-secondary: #a1a1a6;
+            
+            /* Destaques inspirados no bico e penas (Amarelo/Laranja) */
+            --accent: #FFC107; 
+            --accent-dark: #FF5722; 
+            --accent-glow: rgba(255, 193, 7, 0.15);
+            
+            /* Botões e Inputs */
+            --btn-text: #050505;
+            --border: rgba(255, 255, 255, 0.08);
+            --input-bg: rgba(255, 255, 255, 0.03);
+            
+            /* Gradiente Premium */
+            --gradient-action: linear-gradient(135deg, #FFD54F 0%, #FF9800 100%);
+            
+            /* Tipografia */
+            --title-font: 'Playfair Display', serif;
+            --body-font: 'Montserrat', sans-serif;
+        }
+
+        /* Tema Claro Premium (Estilo Clean/Minimalista) */
+        body.light-theme {
+            --bg-color: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --text-main: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent: #E69500;
+            --accent-dark: #D84315;
+            --accent-glow: rgba(230, 149, 0, 0.15);
+            --btn-text: #ffffff;
+            --border: rgba(0, 0, 0, 0.08);
+            --input-bg: rgba(0, 0, 0, 0.02);
+            --gradient-action: linear-gradient(135deg, #FFB300 0%, #E65100 100%);
+        }
+
+        /* Reset e Globais */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--body-font); }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.7; overflow-x: hidden; transition: background-color 0.4s ease; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        button, select, input, textarea { outline: none; border: none; font-family: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* Fundo Radial Minimalista */
+        .bg-fixed {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle at top center, var(--bg-secondary) 0%, var(--bg-color) 100%);
+            z-index: -2;
+        }
+
+        /* Container Principal */
+        .container {
+            width: 100%; max-width: 650px; margin: 0 auto; padding: 60px 24px 40px;
+            display: flex; flex-direction: column; gap: 50px;
+        }
+
+        /* Animação Reveal */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Botões Flutuantes */
+        .top-btn {
+            position: fixed; top: 20px; z-index: 1000;
+            background: rgba(255, 255, 255, 0.05); color: var(--text-main);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border);
+            display: grid; place-items: center; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s ease;
+        }
+        .top-btn:hover { color: var(--accent); border-color: var(--accent); }
+        .theme-toggle { right: 20px; }
+        
+        .share-wrapper { position: fixed; top: 20px; left: 20px; z-index: 1000; }
+        .share-dropdown {
+            position: absolute; top: 55px; left: 0;
+            background: var(--bg-secondary); border: 1px solid var(--border);
+            border-radius: 12px; padding: 8px 0; min-width: 180px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            opacity: 0; visibility: hidden; transform: translateY(-10px);
+            transition: all 0.3s ease; backdrop-filter: blur(10px);
+        }
+        .share-wrapper.active .share-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+        .share-item {
+            display: flex; align-items: center; gap: 12px; padding: 12px 20px;
+            color: var(--text-main); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: 0.3s;
+        }
+        .share-item:hover { background: var(--border); color: var(--accent); }
+
+        /* === CABEÇALHO / PERFIL === */
+        .header-profile { text-align: center; margin-bottom: 10px; }
+        .header-profile img { 
+            width: 100%; max-width: 180px; margin: 0 auto 30px; 
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        .header-profile h1 { font-family: var(--title-font); font-size: clamp(2.2rem, 6vw, 2.8rem); color: var(--text-main); line-height: 1.2; margin-bottom: 8px; letter-spacing: -0.5px; }
+        .header-profile .slogan { font-size: 0.95rem; font-weight: 600; color: var(--accent); margin-bottom: 15px; }
+        .header-profile p { font-size: 0.95rem; font-style: italic; color: var(--text-secondary); font-weight: 300; max-width: 95%; margin: 0 auto 15px; }
+        .fob-registro { 
+            display: inline-block; background: var(--input-bg); border: 1px solid var(--border); 
+            padding: 6px 18px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; 
+            color: var(--text-main); letter-spacing: 1.5px; backdrop-filter: blur(5px);
+        }
+
+        /* Grade de Ações Premium */
+        .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .btn-action {
+            background: var(--input-bg); border: 1px solid var(--border); border-radius: 16px; padding: 18px 10px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; cursor: pointer;
+            backdrop-filter: blur(5px);
+        }
+        .btn-action:hover { background: var(--gradient-action); border-color: transparent; transform: translateY(-3px); box-shadow: 0 10px 20px var(--accent-glow); color: var(--btn-text); }
+        .btn-action i { font-size: 1.4rem; color: var(--text-main); transition: 0.3s; }
+        .btn-action span { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-action:hover i { color: var(--btn-text); }
+
+        /* Títulos de Seção Minimalistas */
+        .section-title { 
+            font-family: var(--title-font); font-size: 1.8rem; color: var(--text-main); 
+            margin-bottom: 25px; text-align: center; position: relative; padding-bottom: 15px;
+        }
+        .section-title::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 40px; height: 3px; background: var(--gradient-action); border-radius: 2px;
+        }
+
+        /* Estilo Sem-Card (Clean Layout) */
+        .clean-section { padding: 0 10px; }
+        .clean-text { font-size: 1rem; color: var(--text-secondary); margin-bottom: 20px; font-weight: 300; text-align: center; }
+        .highlight { color: var(--text-main); font-weight: 600; }
+
+        /* Listas de Benefícios */
+        .feature-list { list-style: none; display: flex; flex-direction: column; gap: 15px; }
+        .feature-list li { display: flex; align-items: center; gap: 15px; font-size: 0.95rem; font-weight: 400; color: var(--text-secondary); }
+        .feature-list i { color: var(--accent); font-size: 1.2rem; flex-shrink: 0; }
+
+        /* Grade de Fundamentos (Minimalista) */
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; border-top: 1px solid var(--border); padding-top: 30px; }
+        .grid-item { text-align: center; padding: 10px; }
+        .grid-item i { font-size: 2rem; background: var(--gradient-action); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; }
+        .grid-item h4 { font-size: 1rem; color: var(--text-main); margin-bottom: 8px; font-weight: 600; letter-spacing: 1px; }
+        .grid-item p { font-size: 0.85rem; color: var(--text-secondary); font-weight: 300; }
+
+        /* Carrosséis Gerais */
+        .carousel { display: flex; gap: 20px; overflow-x: auto; padding: 10px 5px 30px 5px; margin: 0 -5px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .carousel::-webkit-scrollbar { display: none; }
+        .carousel > * { scroll-snap-align: center; }
+
+        /* Container de Card Único Centralizado */
+        .single-card-container { display: flex; justify-content: center; width: 100%; padding: 10px 0; }
+
+        /* Cards do Plantel (Imagens sem corte) */
+        .plantel-item {
+            position: relative; flex: 0 0 85%; max-width: 320px;
+            border-radius: 16px; overflow: hidden; border: 1px solid var(--border);
+            background: var(--input-bg); /* Fundo sutil para preencher os lados se a imagem for fina */
+            height: 420px; /* Altura suficiente para fotos verticais */
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .plantel-item img {
+            width: 100%; height: 100%; 
+            object-fit: contain; /* ESSENCIAL: Garante que a imagem inteira apareça sem cortes */
+            padding: 10px; /* Leve respiro nas bordas */
+            transition: transform 0.7s ease;
+        }
+        .plantel-item:hover img { transform: scale(1.03); }
+        .gallery-tag {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); color: #fff;
+            padding: 40px 20px 15px; font-size: 0.9rem; font-weight: 700; text-align: center; letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Cartões de Serviços Premium (Glassmorphism sutil) */
+        .service-card {
+            width: 100%; max-width: 360px; background: var(--input-bg); border: 1px solid var(--border);
+            border-radius: 20px; padding: 40px 30px 30px; display: flex; flex-direction: column; position: relative; backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        .service-badge { 
+            position: absolute; top: -14px; left: 50%; transform: translateX(-50%); 
+            background: var(--text-main); color: var(--bg-color); padding: 6px 20px; 
+            border-radius: 30px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .service-card h4 { font-family: var(--title-font); font-size: 1.6rem; margin-bottom: 25px; color: var(--text-main); text-align: center; }
+        .service-card .feature-list { margin-bottom: 30px; flex-grow: 1; }
+        
+        .btn-outline {
+            width: 100%; padding: 14px; border: 1px solid var(--border); background: transparent; color: var(--text-main);
+            border-radius: 30px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; cursor: pointer; transition: 0.4s; text-align: center;
+        }
+        .btn-outline:hover { background: var(--text-main); color: var(--bg-color); }
+
+        /* Passos (Como Adquirir - Clean) */
+        .step-list { display: flex; flex-direction: column; gap: 30px; padding-top: 20px; }
+        .step { display: flex; gap: 20px; align-items: flex-start; }
+        .step-num {
+            width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--accent); color: var(--accent);
+            display: grid; place-items: center; font-family: var(--title-font); font-weight: 600; font-size: 1.2rem; flex-shrink: 0;
+        }
+        .step-content { padding-top: 5px; }
+        .step-content h4 { font-size: 1.1rem; margin-bottom: 6px; color: var(--text-main); font-weight: 600; }
+        .step-content p { font-size: 0.9rem; color: var(--text-secondary); font-weight: 300; }
+
+        /* FAQ (Acordeão Elegante) */
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-btn { width: 100%; text-align: left; background: none; color: var(--text-main); font-weight: 400; font-size: 1rem; padding: 20px 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; letter-spacing: 0.5px; }
+        .faq-btn i { color: var(--text-secondary); transition: 0.4s; font-size: 0.8rem; }
+        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .faq-content p { padding-bottom: 20px; font-size: 0.9rem; color: var(--text-secondary); font-weight: 300; }
+        .faq-item.active .faq-content { max-height: 250px; }
+        .faq-item.active .faq-btn i { transform: rotate(180deg); color: var(--accent); }
+
+        /* Formulário Premium */
+        .form-container { border-top: 1px solid var(--border); padding-top: 40px; }
+        .form-group { margin-bottom: 25px; position: relative; }
+        .form-group label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+        .form-control { 
+            width: 100%; padding: 15px 20px; border-radius: 12px; background: var(--input-bg); 
+            border: 1px solid var(--border); color: var(--text-main); font-size: 0.95rem; 
+            transition: all 0.3s ease; backdrop-filter: blur(5px);
+        }
+        .form-control:focus { border-color: var(--accent); background: transparent; }
+        textarea.form-control { resize: vertical; min-height: 120px; }
+        
+        .btn-submit { 
+            width: 100%; background: var(--gradient-action); color: var(--btn-text); 
+            font-weight: 700; font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase; 
+            padding: 18px; border-radius: 30px; cursor: pointer; transition: 0.4s; 
+            display: flex; justify-content: center; gap: 10px; align-items: center; 
+            border: none; margin-top: 20px;
+        }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 25px var(--accent-glow); }
+
+        /* Rodapé Minimalista */
+        footer { text-align: center; padding: 40px 0 20px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.8rem; font-weight: 300; margin-top: 20px; }
+        .social-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 20px; }
+        .social-links a { font-size: 1.3rem; color: var(--text-secondary); transition: 0.3s; }
+        .social-links a:hover { color: var(--text-main); transform: translateY(-3px); }
+        
+        /* Destaque de Segurança */
+        .security-box {
+            background: var(--input-bg); border: 1px solid var(--border);
+            border-radius: 20px; padding: 40px 25px; margin-top: 20px;
+            backdrop-filter: blur(5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-fixed"></div>
+
+    <div class="share-wrapper" id="shareWrapper">
+        <button class="top-btn" onclick="toggleShare()" aria-label="Compartilhar">
+            <i class="fas fa-share-alt"></i>
+        </button>
+        <div class="share-dropdown">
+            <a class="share-item" onclick="shareTo('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <a class="share-item" onclick="shareTo('facebook')"><i class="fab fa-facebook"></i> Facebook</a>
+            <a class="share-item" onclick="shareTo('tiktok')"><i class="fas fa-link"></i> Copiar Link</a>
+        </div>
+    </div>
+
+    <button class="top-btn theme-toggle" onclick="toggleTheme()" aria-label="Mudar Tema">
+        <i class="fas fa-sun"></i>
+    </button>
+
+    <main class="container">
+        
+        <header class="header-profile reveal">
+            <img src="./logo-preta.jpeg" alt="Logo Encanto das Calopsitas" id="logo-image">
+            <h1>Calopsitas GB</h1>
+            <h2 class="slogan">❤️ Ensinar, Aprender e Criar, de um Jeito Único! ❤️</h2>
+            <p>"Excelência na criação de calopsitas em São Paulo - onde o cuidado e a paixão se transformam em qualidade e confiança."</p>
+            <span class="fob-registro">FOB - HT0042</span>
+        </header>
+
+        <nav class="action-grid reveal">
+            <a href="https://wa.me/5511932000154" class="btn-action">
+                <i class="fab fa-whatsapp"></i>
+                <span>Falar Conosco</span>
+            </a>
+            <a href="#plantel-titulo" class="btn-action">
+                <i class="fas fa-feather-alt"></i>
+                <span>Ver Plantel</span>
+            </a>
+        </nav>
+
+        <section aria-labelledby="sobre-titulo" class="reveal clean-section">
+            <h3 id="sobre-titulo" class="section-title">Amor aos Psitacídeos</h3>
+            <p class="clean-text">Nossa criação não é apenas um negócio, é uma paixão. Nossas aves vivem em ambiente livre de estresse, com alimentação premium e higienização rigorosa.</p>
+            <p class="clean-text">Dedicamos tempo à <span class="highlight">socialização diária</span> dos filhotes, garantindo que cheguem ao novo lar extremamente mansos e prontos para interagir.</p>
+            
+            <ul class="feature-list" style="margin-top: 30px;">
+                <li><i class="fas fa-dna"></i> Aves sexadas por exame de DNA</li>
+                <li><i class="fas fa-ring"></i> Filhotes anilhados e registrados</li>
+                <li><i class="fas fa-heartbeat"></i> Acompanhamento veterinário</li>
+            </ul>
+        </section>
+
+        <section aria-labelledby="diferenciais-titulo" class="reveal">
+            <h3 id="diferenciais-titulo" class="section-title">Diferenciais</h3>
+            <div class="grid-cards">
+                <article class="grid-item">
+                    <i class="fas fa-dove"></i>
+                    <h4>Docilidade</h4>
+                    <p>Acostumados com carinho desde o ninho, não bicam e adoram dengo.</p>
+                </article>
+                <article class="grid-item">
+                    <i class="fas fa-file-medical"></i>
+                    <h4>Saúde Garantida</h4>
+                    <p>Aves entregues desverminadas e com atestado de saúde.</p>
+                </article>
+                <article class="grid-item">
+                    <i class="fas fa-palette"></i>
+                    <h4>Mutações Lindas</h4>
+                    <p>Cara Branca, Arlequim, Lutino, Pérola, Albino e muito mais.</p>
+                </article>
+                <article class="grid-item">
+                    <i class="fas fa-hands-helping"></i>
+                    <h4>Suporte Vitalício</h4>
+                    <p>Assistência gratuita pós-venda para dúvidas de manejo.</p>
+                </article>
+            </div>
+        </section>
+
+        <section aria-labelledby="plantel-titulo" class="reveal clean-section">
+            <h3 id="plantel-titulo" class="section-title">Aves do Plantel</h3>
+            <p class="clean-text" style="margin-bottom: 25px;">Conheça algumas de nossas matrizes e reprodutores que formam a família Encanto das Calopsitas.</p>
+            
+            <div class="carousel">
+                <figure class="plantel-item">
+                    <img src="calo-1.jpg" alt="Calopsita Lutino do Plantel">
+                    <figcaption class="gallery-tag">Nossas Matrizes</figcaption>
+                </figure>
+                <figure class="plantel-item">
+                    <img src="calo-2.jpg" alt="Calopsita Cara Branca">
+                    <figcaption class="gallery-tag">Portadores Premium</figcaption>
+                </figure>
+                <figure class="plantel-item">
+                    <img src="calo-3.jpg" alt="Calopsita Arlequim">
+                    <figcaption class="gallery-tag">Genética Dócil</figcaption>
+                </figure>
+                <figure class="plantel-item">
+                    <img src="calo-4.jpg" alt="Calopsita Albina">
+                    <figcaption class="gallery-tag">Aves Lindas</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section id="aves-disponiveis" aria-labelledby="servicos-titulo" class="reveal">
+            <h3 id="servicos-titulo" class="section-title">Reserva de Filhotes</h3>
+            
+            <div class="single-card-container">
+                <article class="service-card">
+                    <div class="service-badge">Pronto pro Lar</div>
+                    <h4>Filhote Manso</h4>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Idade ideal (45 a 60 dias)</li>
+                        <li><i class="fas fa-check"></i> Comendo ração e sementes</li>
+                        <li><i class="fas fa-check"></i> Extremamente dóceis</li>
+                        <li><i class="fas fa-check"></i> Sexagem por DNA inclusa</li>
+                    </ul>
+                    <button class="btn-outline" onclick="abrirWhatsApp('Filhote Manso')">Consultar Disponibilidade</button>
+                </article>
+            </div>
+        </section>
+
+        <section aria-labelledby="seguranca-titulo" class="reveal clean-section security-box">
+            <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; display: block; text-align: center;"></i>
+            <h3 id="seguranca-titulo" class="section-title" style="margin-bottom: 20px;">Transparência e Segurança</h3>
+            <p class="clean-text" style="color: var(--text-main); font-weight: 600;">🔰 Pensando sempre na sua segurança e tranquilidade, a retirada é feita diretamente no local.</p>
+            <p class="clean-text">Aqui você tem a oportunidade de conhecer o ambiente de criação, ver de perto como as aves são cuidas e observar cada detalhe com calma.</p>
+            <p class="clean-text">Nosso objetivo é que você se sinta confiante e satisfeito desde o primeiro contato.</p>
+            <p class="clean-text" style="color: var(--accent); font-weight: 600; margin-bottom: 0;">Assim, você escolhe com muito mais confiança, transparência e certeza de estar levando uma Calopsita saudável e bem tratada. ❤️</p>
+        </section>
+
+        <section aria-labelledby="processo-titulo" class="reveal clean-section">
+            <h3 id="processo-titulo" class="section-title" style="margin-top: 30px;">Como Adquirir</h3>
+            <div class="step-list">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h4>Contato e Escolha</h4>
+                        <p>Fale conosco, veja fotos/vídeos e escolha o filhote ou entre na lista de espera.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h4>Reserva Segura</h4>
+                        <p>Deixe um sinal de reserva e acompanhe o crescimento semanal do seu bebê.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h4>Desmame Independente</h4>
+                        <p>A ave só é liberada quando se alimentar sozinha (extrusada e sementes).</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <h4>Entrega / Retirada</h4>
+                        <p>Retire no local ou enviamos via Táxi Pet. Receba anilha, certificado e suporte.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section aria-labelledby="faq-titulo" class="reveal clean-section">
+            <h3 id="faq-titulo" class="section-title">FAQ</h3>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-btn">As aves já vão mansas? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-content"><p>Sim! Tratamos na papinha na época certa e brincamos diariamente. Elas chegam 100% acostumadas com humanos e interações.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-btn">Fazem envios? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-content"><p>Enviamos via Táxi Pet terrestre em nossa região de forma segura. Para outros estados (aéreo), consulte regras e disponibilidade.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-btn">Qual a diferença entre Macho e Fêmea? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-content"><p>Na docilidade, são iguais. Machos tendem a ser mais vocais e aprender assobios/cantos. Fêmeas costumam ser mais silenciosas e grudadas ao dono.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section aria-labelledby="form-titulo" class="reveal form-container">
+            <h3 id="form-titulo" class="section-title">Reservas e Espera</h3>
+            <form onsubmit="enviarFormulario(event)">
+                <div class="form-group">
+                    <label for="interesse">Interesse</label>
+                    <select id="interesse" class="form-control">
+                        <option value="Disponíveis no momento">Ver disponíveis no momento</option>
+                        <option value="Filhote Macho">Filhote Manso - Macho</option>
+                        <option value="Filhote Fêmea">Filhote Manso - Fêmea</option>
+                        <option value="Mutação Específica">Mutação Específica</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" class="form-control" placeholder="Como podemos te chamar?" required>
+                </div>
+                <div class="form-group">
+                    <label for="cidade">Localização</label>
+                    <input type="text" id="cidade" class="form-control" placeholder="Cidade / Estado" required>
+                </div>
+                <div class="form-group">
+                    <label for="experiencia">Nível de Experiência</label>
+                    <select id="experiencia" class="form-control">
+                        <option value="Sim">Já tenho ou tive aves</option>
+                        <option value="Não">Será meu primeiro pet com penas</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sexo">Preferência de Sexo</label>
+                    <select id="sexo" class="form-control">
+                        <option value="Indiferente">Indiferente / O que encantar primeiro</option>
+                        <option value="Macho">Preferência por Macho</option>
+                        <option value="Fêmea">Preferência por Fêmea</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem Adicional</label>
+                    <textarea id="mensagem" class="form-control" placeholder="Tem alguma dúvida ou procura uma cor específica? Escreva aqui..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">
+                    Iniciar Atendimento <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+        </section>
+
+        <footer class="reveal">
+            <div class="social-links">
+                <a href="https://www.instagram.com/calopsitas.gb?igsh=ZGU4dHE0d2ZjNDk5" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/share/1DAL6j9KDZ/" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            </div>
+            <p>&copy; 2026 Encanto das Calopsitas.<br>Todos os direitos reservados.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- ANIMAÇÃO SCROLL (REVEAL) ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.12 };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+
+        // --- COMPARTILHAMENTO ---
+        function toggleShare() {
+            document.getElementById('shareWrapper').classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const wrapper = document.getElementById('shareWrapper');
+            if (!wrapper.contains(event.target)) {
+                wrapper.classList.remove('active');
+            }
+        });
+
+        function shareTo(platform) {
+            const currentUrl = encodeURIComponent(window.location.href);
+            let shareUrl = '';
+
+            if (platform === 'whatsapp') {
+                shareUrl = `https://api.whatsapp.com/send?text=Olha que incrível este criatório de Calopsitas: ${currentUrl}`;
+                window.open(shareUrl, '_blank');
+            } else if (platform === 'facebook') {
+                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            } else if (platform === 'tiktok') {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert("Link copiado! Você pode colar onde quiser.");
+                });
+            }
+            document.getElementById('shareWrapper').classList.remove('active');
+        }
+
+        // --- TROCA DE TEMA COM TROCA DE LOGO ---
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.querySelector('.theme-toggle i');
+            const logoImage = document.getElementById('logo-image'); // Localiza a logo
+            body.classList.toggle('light-theme');
+            
+            if (body.classList.contains('light-theme')) {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme-calopsitas', 'light');
+                logoImage.src = './logo-branca.jpeg'; // Troca para a logo de tema claro
+            } else {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme-calopsitas', 'dark');
+                logoImage.src = './logo-preta.jpeg'; // Troca para a logo de tema escuro
+            }
+        }
+
+        // Verifica preferência salva e define a logo inicial
+        if (localStorage.getItem('theme-calopsitas') === 'light') {
+            document.body.classList.add('light-theme');
+            document.querySelector('.theme-toggle i').classList.replace('fa-sun', 'fa-moon');
+            document.getElementById('logo-image').src = './logo-branca.jpeg'; // Garante a logo correta ao carregar
+        }
+
+        // --- WHATSAPP FUNCTIONS ---
+        const numeroZap = "5511932000154"; // Substituir pelo número real
+
+        function abrirWhatsApp(assunto) {
+            const msg = encodeURIComponent(`Olá Encanto das Calopsitas! Tenho interesse em saber mais sobre: *${assunto}*.`);
+            window.open(`https://wa.me/${numeroZap}?text=${msg}`, '_blank');
+        }
+
+        function enviarFormulario(event) {
+            event.preventDefault(); 
+            const interesse = document.getElementById('interesse').value;
+            const nome = document.getElementById('nome').value;
+            const cidade = document.getElementById('cidade').value;
+            const experiencia = document.getElementById('experiencia').value;
+            const sexo = document.getElementById('sexo').value;
+            const mensagem = document.getElementById('mensagem').value || 'Sem preferências específicas.';
+
+            const textoBase = `Olá Encanto das Calopsitas! Vim pelo site.%0A%0A*--- MEUS DADOS ---*%0A*Nome:* ${nome}%0A*Cidade:* ${cidade}%0A*Já teve ave?:* ${experiencia}%0A*Interesse:* ${interesse}%0A*Preferência:* ${sexo}%0A%0A*--- MENSAGEM ---*%0A${mensagem}`;
+            
+            window.open(`https://wa.me/${numeroZap}?text=${textoBase}`, '_blank');
+        }
+
+        // --- ACORDEÃO (FAQ) ---
+        document.querySelectorAll('.faq-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== faqItem) item.classList.remove('active');
+                });
+                faqItem.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
