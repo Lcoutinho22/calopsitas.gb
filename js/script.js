@@ -53,11 +53,11 @@
             if (body.classList.contains('light-theme')) {
                 icon.classList.replace('fa-sun', 'fa-moon');
                 localStorage.setItem('theme-calopsitas', 'light');
-                logoImage.src = '../image/logo-branca.jpeg'; // Troca para a logo de tema claro
+                logoImage.src = './image/logo-branca.jpeg'; // Troca para a logo de tema claro
             } else {
                 icon.classList.replace('fa-moon', 'fa-sun');
                 localStorage.setItem('theme-calopsitas', 'dark');
-                logoImage.src = '../image/logo-preta.jpeg'; // Troca para a logo de tema escuro
+                logoImage.src = './image/logo-preta.jpeg'; // Troca para a logo de tema escuro
             }
         }
 
@@ -65,7 +65,7 @@
         if (localStorage.getItem('theme-calopsitas') === 'light') {
             document.body.classList.add('light-theme');
             document.querySelector('.theme-toggle i').classList.replace('fa-sun', 'fa-moon');
-            document.getElementById('logo-image').src = 'image_2.png'; // Garante a logo correta ao carregar
+            document.getElementById('logo-image').src = './image/logo-branca.jpeg'; // Garante a logo correta ao carregar
         }
 
         // --- WHATSAPP FUNCTIONS ---
