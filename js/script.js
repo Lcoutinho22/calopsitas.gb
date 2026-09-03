@@ -13,6 +13,17 @@
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         });
 
+        // --- SPLASH SCREEN ---
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('splash-screen');
+            if (splash) {
+                splash.classList.add('hidden');
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                }, 800); // Aguarda o tempo da transição CSS
+            }
+        });
+
         // --- COMPARTILHAMENTO ---
         function toggleShare() {
             document.getElementById('shareWrapper').classList.toggle('active');
@@ -94,9 +105,16 @@
         document.querySelectorAll('.faq-btn').forEach(button => {
             button.addEventListener('click', () => {
                 const faqItem = button.parentElement;
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
                 document.querySelectorAll('.faq-item').forEach(item => {
-                    if (item !== faqItem) item.classList.remove('active');
+                    if (item !== faqItem) {
+                        item.classList.remove('active');
+                        item.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+                    }
                 });
+
                 faqItem.classList.toggle('active');
+                button.setAttribute('aria-expanded', !isExpanded);
             });
         });

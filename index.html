@@ -7,6 +7,17 @@
     <title>Calopsitas GB | Criatório Especializado</title>
     <meta name="description" content="Excelência na criação de calopsitas em São Paulo - onde o cuidado e a paixão se transformam em qualidade e confiança.">
     <meta name="theme-color" content="#FFB703">
+    
+    <!-- Metadados / SEO Técnico -->
+    <link rel="canonical" href="https://seusite.com.br/">
+    <meta property="og:title" content="Calopsitas GB | Criatório Especializado">
+    <meta property="og:description" content="Excelência na criação de calopsitas em São Paulo - onde o cuidado e a paixão se transformam em qualidade e confiança.">
+    <meta property="og:image" content="https://seusite.com.br/image/logo-preta.jpeg">
+    <meta property="og:url" content="https://seusite.com.br/">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" href="./image/logo-preta.jpeg" type="image/jpeg">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,6 +26,11 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+
+    <!-- Tela de Carregamento (Splash) -->
+    <div id="splash-screen" class="splash-screen">
+        <img src="./image/logo-preta.jpeg" alt="Carregando Calopsitas GB">
+    </div>
 
     <div class="bg-fixed"></div>
 
@@ -38,7 +54,7 @@
         <header class="header-profile reveal">
             <img src="./image/logo-preta.jpeg" alt="Logo Calopsitas GB" id="logo-image">
             <h1>Calopsitas GB</h1>
-            <h2 class="slogan">❤️ Ensinar, Aprender e Criar, de um Jeito Único! ❤️</h2>
+            <p class="slogan">❤️ Ensinar, Aprender e Criar, de um Jeito Único! ❤️</p>
             <p>"Excelência na criação de calopsitas em São Paulo - onde o cuidado e a paixão se transformam em qualidade e confiança."</p>
             <span class="fob-registro">FOB - HT0042</span>
         </header>
@@ -48,7 +64,7 @@
                 <i class="fab fa-whatsapp"></i>
                 <span>Falar Conosco</span>
             </a>
-            <a href="#aves-disponiveis" class="btn-action">
+            <a href="#filhotes-galeria" class="btn-action">
                 <i class="fas fa-feather-alt"></i>
                 <span>Ver Filhotes</span>
             </a>
@@ -71,23 +87,22 @@
             <div class="grid-cards">
                 <article class="grid-item">
                     <i class="fas fa-dove"></i>
-                    <h4>Docilidade</h4>
+                    <h3>Docilidade</h3>
                     <p>Acostumados com carinho desde o ninho, não bicam e adoram dengo.</p>
                 </article>
                 <article class="grid-item">
                     <i class="fas fa-file-medical"></i>
-                    <h4>Saúde Garantida</h4>
-                    <p>Aves entregues 100% ativas e com atestado de saúde (opcional).
-</p>
+                    <h3>Saúde Garantida</h3>
+                    <p>Aves entregues 100% ativas e com atestado de saúde (opcional).</p>
                 </article>
                 <article class="grid-item">
                     <i class="fas fa-palette"></i>
-                    <h4>Mutações Lindas</h4>
+                    <h3>Mutações Lindas</h3>
                     <p>Cara branca, arlequim, lutino, opalina, albino, mutações raras, entre outras.</p>
                 </article>
                 <article class="grid-item">
                     <i class="fas fa-hands-helping"></i>
-                    <h4>Suporte Vitalício</h4>
+                    <h3>Suporte Vitalício</h3>
                     <p>Assistência gratuita pós-venda para dúvidas de manejo.</p>
                 </article>
             </div>
@@ -99,21 +114,84 @@
             
             <div class="carousel">
                 <figure class="plantel-item">
-                    <img src="./image/calo-1.jpg" alt="Calopsita Lutino do Plantel">
+                    <img src="./image/calo-1.jpg" alt="Calopsita Lutino do Plantel" loading="lazy">
                     <figcaption class="gallery-tag">Nossas Matrizes</figcaption>
                 </figure>
                 <figure class="plantel-item">
-                    <img src="./image/calo-2.jpg" alt="Calopsita Cara Branca">
+                    <img src="./image/calo-2.jpg" alt="Calopsita Cara Branca" loading="lazy">
                     <figcaption class="gallery-tag">Portadores Premium</figcaption>
                 </figure>
                 <figure class="plantel-item">
-                    <img src="./image/calo-3.jpg" alt="Calopsita Arlequim">
+                    <img src="./image/calo-3.jpg" alt="Calopsita Arlequim" loading="lazy">
                     <figcaption class="gallery-tag">Genética Dócil</figcaption>
                 </figure>
                 <figure class="plantel-item">
-                    <img src="./image/calo-4.jpg" alt="Calopsita Albina">
+                    <img src="./image/calo-4.jpg" alt="Calopsita Albina" loading="lazy">
                     <figcaption class="gallery-tag">Raridades do Plantel</figcaption>
                 </figure>
+            </div>
+        </section>
+
+        <section id="filhotes-galeria" aria-labelledby="filhotes-titulo" class="reveal clean-section">
+            <h2 id="filhotes-titulo" class="section-title">Filhotes Disponíveis</h2>
+            <p class="clean-text mb-25">Confira algumas de nossas fofuras que estão em fase de desmame ou prontas para um novo lar.</p>
+            
+            <div class="carousel">
+                <figure class="plantel-item">
+                    <span class="mutacao-badge">Lutino Fundo Branca</span>
+                    <img src="./image/filhote-1.jpeg" alt="Filhote Lutino" loading="lazy">
+                </figure>
+                <figure class="plantel-item">
+                    <span class="mutacao-badge">Cinza Fundo Branca</span>
+                    <img src="./image/filhote-2.jpeg" alt="Filhote Opalina" loading="lazy">
+                </figure>
+                <figure class="plantel-item">
+                    <span class="mutacao-badge">Reverso Canela Fundo Branco</span>
+                    <img src="./image/filhote-3.jpeg" alt="Filhote Cinza" loading="lazy">
+                </figure>
+                <figure class="plantel-item">
+                    <span class="mutacao-badge">Reverso Cinza Fundo Branco</span>
+                    <img src="./image/filhote-4.jpeg" alt="Filhote Canela" loading="lazy">
+                </figure>
+                <figure class="plantel-item">
+                    <span class="mutacao-badge">Opalina Cinza Fundo Branco</span>
+                    <img src="./image/filhote-5.jpeg" alt="Filhote Opalina Cinza" loading="lazy">
+                </figure>
+                <figure class="plantel-item">
+                    <span class="mutacao-badge">Opalina Cinza Fundo Branco</span>
+                    <img src="./image/filhote-6.jpeg" alt="Filhote Reservado" loading="lazy">
+                </figure>
+                 <figure class="plantel-item">
+                    <span class="mutacao-badge">Reverso Opalino Cinza Fundo Branco</span>
+                    <img src="./image/filhote-7.jpeg" alt="Filhote Reservado" loading="lazy">
+                </figure>
+                 <figure class="plantel-item">
+                    <span class="mutacao-badge">Reverso Opalino Cinza Fundo Branco</span>
+                    <img src="./image/filhote-8.jpeg" alt="Filhote Reservado" loading="lazy">
+                </figure>
+                 <figure class="plantel-item">
+                    <span class="mutacao-badge">Canela Fundo Branco</span>
+                    <img src="./image/filhote-9.jpeg" alt="Filhote Reservado" loading="lazy">
+                </figure>
+                 <figure class="plantel-item">
+                    <span class="mutacao-badge">Opalina Cinza Bochecha Pastel</span>
+                    <img src="./image/filhote-10.jpeg" alt="Filhote Reservado" loading="lazy">
+                </figure>
+                <figure class="plantel-item">
+                    <span class="mutacao-badge">Opalina Cinza Fundo Amarelo</span>
+                    <img src="./image/filhote-11.jpeg" alt="Filhote Reservado" loading="lazy">
+                </figure>
+            </div>
+            
+            <!-- Nova informação com botão -->
+            <div class="carousel-info-box">
+                <ul class="info-list">
+                    <li>🐥 Aves em torno de 25 a 30 dias</li>
+                    <li>🚫 Sem sexagem</li>
+                </ul>
+                <button class="btn-submit btn-reserva" onclick="abrirWhatsApp('Reserva de Filhotes da Galeria')">
+                    ❤️ FAÇA SUA RESERVA
+                </button>
             </div>
         </section>
 
@@ -123,7 +201,7 @@
             <div class="single-card-container">
                 <article class="service-card">
                     <div class="service-badge">Pronto pro Lar</div>
-                    <h4>Filhote Manso</h4>
+                    <h3>Filhote Manso</h3>
                     <ul class="feature-list">
                         <li><i class="fas fa-check"></i> Idade ideal (45 a 60 dias)</li>
                         <li><i class="fas fa-check"></i> Comendo ração e sementes</li>
@@ -139,7 +217,7 @@
             <i class="fas fa-shield-alt security-icon"></i>
             <h2 id="seguranca-titulo" class="section-title mb-20">Transparência e Segurança</h2>
             <p class="clean-text security-text-main">🔰 Pensando sempre na sua segurança e tranquilidade, a retirada é feita diretamente no local.</p>
-            <p class="clean-text">Aqui você tem a oportunidade de conhecer o ambiente de criação, ver de perto como as aves são cuidas e observar cada detalhe com calma.</p>
+            <p class="clean-text">Aqui você tem a oportunidade de conhecer o ambiente de criação, ver de perto como as aves são cuidadas e observar cada detalhe com calma.</p>
             <p class="clean-text">Nosso objetivo é que você se sinta confiante e satisfeito desde o primeiro contato.</p>
             <p class="clean-text security-text-accent">Assim, você escolhe com muito mais confiança, transparência e certeza de estar levando uma Calopsita saudável e bem tratada. ❤️</p>
         </section>
@@ -150,29 +228,29 @@
                 <div class="step">
                     <div class="step-num">1</div>
                     <div class="step-content">
-                        <h4>Contato e Escolha</h4>
+                        <h3>Contato e Escolha</h3>
                         <p>Fale conosco, veja fotos/vídeos e escolha o filhote ou entre na lista de espera.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-num">2</div>
                     <div class="step-content">
-                        <h4>Reserva Segura</h4>
+                        <h3>Reserva Segura</h3>
                         <p>Deixe um sinal de reserva e acompanhe o crescimento semanal do seu bebê.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-num">3</div>
                     <div class="step-content">
-                        <h4>Desmame Independente</h4>
+                        <h3>Desmame Independente</h3>
                         <p>A ave só é liberada quando se alimentar sozinha (extrusada e sementes).</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-num">4</div>
                     <div class="step-content">
-                        <h4>Entrega / Retirada</h4>
-                        <p>Não, retirada é feita no local para sua melhor segurança e da ave.</p>
+                        <h3>Entrega / Retirada</h3>
+                        <p>Retirada feita exclusivamente no local para sua melhor segurança e bem-estar da ave.</p>
                     </div>
                 </div>
             </div>
@@ -182,16 +260,16 @@
             <h2 id="faq-titulo" class="section-title">FAQ</h2>
             <div class="faq-list">
                 <div class="faq-item">
-                    <button class="faq-btn">As aves já vão mansas? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-content"><p>Sim!Fazemos o contato diario de maneira certa e brincamos diariamente. Elas chegam 100% acostumadas com humanos e interações.</p></div>
+                    <button class="faq-btn" aria-expanded="false" aria-controls="faq1">As aves já vão mansas? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-content" id="faq1"><p>Sim! Fazemos o contato diário de maneira certa e brincamos diariamente. Elas chegam 100% acostumadas com humanos e interações.</p></div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-btn">Fazem envios? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-content"><p>Não apenas retira no local , para melhor segurança da ave.</p></div>
+                    <button class="faq-btn" aria-expanded="false" aria-controls="faq2">Fazem envios? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-content" id="faq2"><p>Não, apenas retirada no local para a melhor segurança da ave.</p></div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-btn">Qual a diferença entre Macho e Fêmea? <i class="fas fa-chevron-down"></i></button>
-                    <div class="faq-content"><p>Na docilidade, são iguais. Machos tendem a ser mais vocais e aprender assobios/cantos. Fêmeas costumam ser mais silenciosas e grudadas ao dono.</p></div>
+                    <button class="faq-btn" aria-expanded="false" aria-controls="faq3">Qual a diferença entre Macho e Fêmea? <i class="fas fa-chevron-down"></i></button>
+                    <div class="faq-content" id="faq3"><p>Na docilidade, são iguais. Machos tendem a ser mais vocais e aprender assobios/cantos. Fêmeas costumam ser mais silenciosas e grudadas ao dono.</p></div>
                 </div>
             </div>
         </section>

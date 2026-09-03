@@ -55,7 +55,6 @@ body {
   background-color: var(--bg-color);
   color: var(--text-main);
   line-height: 1.7;
-  overflow-x: hidden;
   transition: background-color 0.4s ease;
 }
 a {
@@ -351,7 +350,7 @@ img {
   -webkit-text-fill-color: transparent;
   margin-bottom: 15px;
 }
-.grid-item h4 {
+.grid-item h3 {
   font-size: 1rem;
   color: var(--text-main);
   margin-bottom: 8px;
@@ -407,7 +406,6 @@ img {
   height: 100%;
   object-fit: contain;
   -webkit-object-fit: contain; /* Safari prefix */
-  padding: 10px;
   transition: transform 0.7s ease;
   display: block;
   margin: 0 auto;
@@ -428,6 +426,54 @@ img {
   text-align: center;
   letter-spacing: 1px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Badges de Mutação */
+.mutacao-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--gradient-action);
+  color: var(--btn-text);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+.mutacao-badge.reservado {
+  background: #ff5722;
+  color: #fff;
+}
+
+/* Info Box do Carrossel */
+.carousel-info-box {
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  margin: 20px auto 0;
+  max-width: 360px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+.carousel-info-box .info-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.carousel-info-box .info-list li {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+.btn-reserva {
+  margin-top: 0;
 }
 
 /* Cartões de Serviços Premium (Glassmorphism sutil) */
@@ -464,7 +510,7 @@ img {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-.service-card h4 {
+.service-card h3 {
   font-family: var(--title-font);
   font-size: 1.6rem;
   margin-bottom: 25px;
@@ -524,7 +570,7 @@ img {
 .step-content {
   padding-top: 5px;
 }
-.step-content h4 {
+.step-content h3 {
   font-size: 1.1rem;
   margin-bottom: 6px;
   color: var(--text-main);
@@ -709,6 +755,35 @@ footer {
   margin-bottom: 0;
 }
 
+/* Splash Screen */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg-color);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+.splash-screen img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  animation: pulseLogo 2s infinite ease-in-out;
+}
+.splash-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+@keyframes pulseLogo {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
 /* Responsividade Aprimorada */
 @media (max-width: 480px) {
   .container {
@@ -726,5 +801,20 @@ footer {
   }
   .plantel-item {
     height: 350px;
+  }
+}
+
+/* Acessibilidade de Movimento */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
