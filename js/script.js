@@ -82,8 +82,8 @@
         // --- WHATSAPP FUNCTIONS ---
         const numeroZap = "5511932000154"; // Substituir pelo número real
 
-        function abrirWhatsApp(assunto) {
-            const msg = encodeURIComponent(`Olá Calopsitas GB! Tenho interesse em saber mais sobre: *${assunto}*.`);
+        function abrirWhatsApp(assunto = 'FILHOTES') {
+            const msg = encodeURIComponent(`Olá Calopsitas GB! Tenho interesse em saber mais sobre: ${assunto}.`);
             window.open(`https://wa.me/${numeroZap}?text=${msg}`, '_blank');
         }
 
